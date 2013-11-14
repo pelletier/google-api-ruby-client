@@ -76,6 +76,8 @@ module Google
             hash[var] = @authorization.instance_variable_get("@#{var}")
           end
           hash['issued_at'] = @authorization.issued_at.to_i
+          hash['authorization_uri'] = hash['authorization_uri'].to_s
+          hash['token_credential_uri'] = hash['token_credential_uri'].to_s
 
           File.open(self.path, 'w', 0600) do |file|
             file.write(hash.to_json)
